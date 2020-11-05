@@ -1,0 +1,6 @@
+*.pyc
+*.bag
+*.png
+*.csv
+.vscode*
+*.mp4
