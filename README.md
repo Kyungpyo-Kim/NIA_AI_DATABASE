@@ -15,6 +15,7 @@ python exporter.py --bag_file={bag_file_name}
 # or
 python exporter.py --bag_file={folder_of_bag_files}
 ```
+
 ## Run with sshfs
 ```bash
 sshfs xavier@192.168.0.1:/home/xavier/ssd/202X-XX-XX-XX-XX-XX /my/database/folder
