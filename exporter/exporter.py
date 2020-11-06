@@ -119,7 +119,7 @@ def main():
                     b2g.getGpsTimeWeeks(t),
                     b2g.getGpsWeekOfTimeNanosec(t),
                     b2g.getUtctimeFromRosTime(t),
-                    frame=i
+                    frame=i,
                 )
             if topic == args.gps_topic or topic == args.gps_time_topic:
                 b2g.processMsg(
