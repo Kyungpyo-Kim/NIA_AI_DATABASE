@@ -49,7 +49,8 @@ class BagToCanCsv:
                 msg.data.encode("hex"),
                 week,
                 time_of_week,
-                utc,
+                utc[0],
+                utc[1],
             ]
         )
         self.seq += 1
@@ -67,7 +68,8 @@ class BagToCanCsv:
                 "data[hex]",
                 "week",
                 "time of week [nsec]",
-                "utc",
+                "utc [HHMMSS.SS]",
+                "utc [DDMMYY]",
             ]
         )
 

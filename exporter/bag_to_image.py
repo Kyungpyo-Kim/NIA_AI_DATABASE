@@ -44,12 +44,16 @@ class BagToImage:
             self.csv_file, delimiter=",", quotechar="|", quoting=csv.QUOTE_MINIMAL
         )
 
-    def processMsg(self, topic, msg, t, week, time_of_week, utc):
+    def processMsg(self, topic, msg, t, week, time_of_week, utc, frame=0):
         cv_img = self.bridge.imgmsg_to_cv2(msg, desired_encoding="bgr8")
-        image_path = os.path.join(self.images_dir, "frame%06i.png" % self.seq)
+        ddmmyy = utc[1]
+        yymmdd = ddmmyy[-2:] + ddmmyy[-4:-2] + ddmmyy[:2]
+        seq = self.seq
+        file_name = "{}_R_{:03d}_{:05d}.png".format(yymmdd, frame, self.seq)
+        image_path = os.path.join(self.images_dir, file_name)
         cv2.imwrite(image_path, cv_img)
         self.meta_file.writerow(
-            [self.seq, t.to_sec(), image_path, week, time_of_week, utc]
+            [self.seq, t.to_sec(), file_name, week, time_of_week, utc[0], ddmmyy]
         )
         self.seq += 1
         self.size += os.path.getsize(image_path)
@@ -59,10 +63,11 @@ class BagToImage:
             [
                 "sequence",
                 "ros time [sec]",
-                "image path (relative)",
+                "file name",
                 "week",
                 "time of week [nsec]",
-                "utc",
+                "utc [HHMMSS.SS]",
+                "utc [DDMMYY]",
             ]
         )
 

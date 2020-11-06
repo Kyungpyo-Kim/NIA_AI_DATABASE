@@ -50,10 +50,12 @@ class BagToGpsCsv:
         self.utc_min = 0
         self.utc_sec = 0
         self.time_ref_set = False
+        self.gps_vel = 0
 
     def processMsg(self, topic, msg, t, week, time_of_week, utc):
         if topic == self.gps_time_topic:
             self.setUtcTimeProperties(topic, msg, t)
+            self.setVelocity(topic, msg, t)
         if topic == self.gps_topic:
             self.gps_file.writerow(
                 [
@@ -61,11 +63,15 @@ class BagToGpsCsv:
                     t.to_sec(),
                     msg.latitude,
                     msg.longitude,
+                    "N",
                     msg.altitude,
+                    "E",
                     msg.status.status,
                     week,
                     time_of_week,
-                    utc,
+                    utc[0],
+                    utc[1],
+                    self.gps_vel,
                 ]
             )
             self.seq += 1
@@ -77,11 +83,15 @@ class BagToGpsCsv:
                 "ros time [sec]",
                 "latitude",
                 "longitude",
+                "North/South",
                 "altitude",
+                "East/West",
                 "status",
                 "week",
                 "time of week [nsec]",
-                "utc",
+                "utc [HHMMSS.SS]",
+                "utc [DDMMYY]",
+                "speed [mm/s]",
             ]
         )
 
@@ -96,7 +106,7 @@ class BagToGpsCsv:
 
     def setUtcTimeProperties(self, topic, msg, t):
         if self.time_ref_set == True:
-            "Warning! Time reference is already set!"
+            # print("Warning! Time reference is already set!")
             return
 
         if topic == self.gps_time_topic:
@@ -118,6 +128,9 @@ class BagToGpsCsv:
             self.ros_time_ref = t.to_nsec()
             return
 
+    def setVelocity(self, topic, msg, t):
+        self.gps_vel = msg.gSpeed  # Ground Speed (2-D) [mm/s]
+
     def getGpsTimeWeeks(self, rostime):
         return self.gps_weeks
 
@@ -128,15 +141,28 @@ class BagToGpsCsv:
     def getUtctimeFromRosTime(self, rostime):
         time_diff_nsec = rostime.to_nsec() - self.ros_time_ref
         gps_nsec = self.gps_time_of_week_nsec + time_diff_nsec
-        week_to_sec = 7 * 24 * 60 * 60
         to_nsec = 1000000000
-        gps_timestamp = self.gps_weeks * week_to_sec + int(gps_nsec / to_nsec)
+        gps_sec_dec = int(gps_nsec / to_nsec)
+        gps_sec_dec_p = float(gps_nsec) / float(to_nsec) - float(gps_sec_dec)
+        week_to_sec = 7 * 24 * 60 * 60
+        gps_timestamp = self.gps_weeks * week_to_sec + gps_sec_dec
         gps_epoch_as_gps = datetime(1980, 1, 6)
         gps_time_as_gps = gps_epoch_as_gps + timedelta(seconds=gps_timestamp)
         gps_time_as_tai = gps_time_as_gps + timedelta(seconds=-8)  # constant offset
         tai_epoch_as_tai = datetime(1970, 1, 1, 0, 0, 10)
         tai_timestamp = (gps_time_as_tai - tai_epoch_as_tai).total_seconds()
-        return datetime.utcfromtimestamp(tai_timestamp)
+        utc = str(datetime.utcfromtimestamp(tai_timestamp))
+
+        ## YYYY-MM-DD-HH-MM-SS + .SS -> HHMMSS.SS
+        utc_time = utc.split(" ")[-1].replace(":", "") + ".{0:02d}".format(
+            int(gps_sec_dec_p * 100)
+        )
+
+        ## YYYY-MM-DD-HH-MM-SS -> DDMMYY
+        date = utc.split(" ")[0].split("-")
+        utc_date = "{}{}{}".format(date[-1], date[-2], date[0][-2:])
+
+        return [utc_time, utc_date]
 
 
 def main():

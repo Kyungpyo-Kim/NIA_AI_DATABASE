@@ -96,12 +96,18 @@ def main():
         ## get data
         msg_num = bag.get_message_count(args.image_topic)
         msg_num += bag.get_message_count(args.gps_topic)
+        msg_num += bag.get_message_count(args.gps_time_topic)
         msg_num += bag.get_message_count(args.can_topic)
 
         print "\nStart data parsing: {}\n".format(bag_file)
         for topic, msg, t in tqdm(
             bag.read_messages(
-                topics=[args.image_topic, args.gps_topic, args.can_topic]
+                topics=[
+                    args.image_topic,
+                    args.gps_topic,
+                    args.can_topic,
+                    args.gps_time_topic,
+                ]
             ),
             total=msg_num,
         ):
@@ -113,6 +119,7 @@ def main():
                     b2g.getGpsTimeWeeks(t),
                     b2g.getGpsWeekOfTimeNanosec(t),
                     b2g.getUtctimeFromRosTime(t),
+                    frame=i
                 )
             if topic == args.gps_topic or topic == args.gps_time_topic:
                 b2g.processMsg(
