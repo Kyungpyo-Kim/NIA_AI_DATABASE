@@ -4,3 +4,7 @@
 *.csv
 .vscode*
 *.mp4
+ros/devel*
+ros/build*
+ros/logs*
+ros/.catkin_tools

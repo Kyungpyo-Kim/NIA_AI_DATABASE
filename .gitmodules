@@ -1,0 +1,12 @@
+[submodule "ros/src/bsw/pylon-ros-camera"]
+	path = ros/src/bsw/pylon-ros-camera
+	url = https://github.com/basler/pylon-ros-camera
+[submodule "ros/src/bsw/dragandbot_common"]
+	path = ros/src/bsw/dragandbot_common
+	url = https://github.com/dragandbot/dragandbot_common.git
+[submodule "ros/src/bsw/kavser_interface"]
+	path = ros/src/bsw/kavser_interface
+	url = https://github.com/astuff/kvaser_interface.git
+[submodule "ros/src/bsw/ublox"]
+	path = ros/src/bsw/ublox
+	url = https://github.com/KumarRobotics/ublox.git

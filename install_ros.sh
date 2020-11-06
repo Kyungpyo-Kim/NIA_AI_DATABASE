@@ -17,5 +17,5 @@ sudo apt-get update
 sudo apt-get install -y python-catkin-tools
 ## install ros dependencies
 sudo apt install -y ros-melodic-can-msgs 
-## install sshfs
-sudo apt install sshfs
+## install ssh
+sudo apt install -y openssh-server sshfs
