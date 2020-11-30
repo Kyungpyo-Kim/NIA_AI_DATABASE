@@ -2,5 +2,6 @@
   <include file="$(find logging_box)/launch/kvaser_can_bridge_node.launch"/>
   <include file="$(find logging_box)/launch/pylon_camera_node.launch"/>
   <include file="$(find logging_box)/launch/ublox_gps_node.launch"/>
+  <include file="$(find logging_box)/launch/reverse_cam_view.launch"/>
 </launch>
 
