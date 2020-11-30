@@ -97,7 +97,7 @@ sudo mkfs.ext4 /dev/nvme0n1
 
 ## automatic mount on booting
 sudo gedit /etc/fstab 
-/dev/nvme0n1 /home/xavier/ssd ext4 defaults 0 2
+/dev/nvme0n1 /home/xavier/ssd ext4 defaults 0 2 ## 단일 컨트롤러, 단일 포트이기 때문에 nvme0n1 로 고정
 
 ## reboot and change permission
 sudo reboot
