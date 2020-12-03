@@ -48,6 +48,8 @@ bash install_opencv.sh # takes ~30min
 sudo ln -s /usr/include/opencv4 /usr/include/opencv
 ```
 #### Pylon Camera Driver
+Using Pylon Camera Viewer App, you have to set UserSet1 to what you want it to.
+
 * Download for AARCH64: https://drive.google.com/file/d/1SZe4kIC-2SsPWeN9AXjCdjawoqamj4dQ/view?usp=sharing
 * Download for AMD64: https://drive.google.com/file/d/1f62sNouyTuJwT-zswJpjgEBdYGgtUBlg/view?usp=sharing
 * Install
@@ -81,7 +83,7 @@ sudo ln -s /usr/include/opencv4 /usr/include/opencv
   ```
 #### Ublox 
 ```bash
-sudo chmod 666  /dev/ttyACM0
+sudo chmod 666 /dev/ttyACM0
 ```
 #### Setup SSD memory
 ```bash
@@ -124,7 +126,12 @@ bash run.sh
 gsettings set org.gnome.nautilus.preferences executable-text-activation 'launch'
 chmod +x run.sh
 ```
-
+#### Environment variable set-up
+```
+echo source ~/git/NIA_AI_DATABASE/ros/devel/setup.bash >> ~/.bashrc
+echo export ROS_IP=192.168.0.1 >> ~/.bashrc
+echo cd ~/git/NIA_AI_DATABASE >> ~/.bashrc
+```
 ## Exporter
 
 ### UTC Time stamp

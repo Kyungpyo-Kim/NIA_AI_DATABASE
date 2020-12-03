@@ -4,7 +4,7 @@
     <arg name="debug" default="false" />
     <arg name="node_name" default="pylon_camera_node" />
     <arg name="mtu_size" default="1500" />
-    <arg name="startup_user_set" default="CurrentSetting" />
+    <arg name="startup_user_set" default="UserSet1" />
     <arg name="enable_status_publisher" default="true" />
     <arg name="enable_current_params_publisher" default="true" />
     <arg name="config_file" default="$(find logging_box)/config/default.yaml" />
@@ -19,7 +19,7 @@
         <param name="startup_user_set" value="$(arg startup_user_set)"/>
         <param name="enable_status_publisher" value="$(arg enable_status_publisher)"/>
         <param name="enable_current_params_publisher" value="$(arg enable_current_params_publisher)"/>
-        <param name="startup_user_set" value="UserSet1"/>
+        <param name="startup_user_set" value="$(arg startup_user_set)"/>
     </node>
 
 </launch>

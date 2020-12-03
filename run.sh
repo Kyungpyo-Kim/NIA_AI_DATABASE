@@ -1,7 +1,7 @@
 #!/bin/bash
 
 logging_dir=$(date +'%Y_%m_%d_%H_%M_%S')
-LOGGING_BOX_DIR=/home/${USER}/git/logging_box/ros
+LOGGING_BOX_DIR=/home/${USER}/git/NIA_AI_DATABASE/ros
 echo "Logging dir: /home/${USER}/ssd/${logging_dir}"
 echo "Workspace dir: ${LOGGING_BOX_DIR}"
 

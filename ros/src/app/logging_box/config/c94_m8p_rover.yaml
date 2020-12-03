@@ -9,8 +9,8 @@ save:
 
 device: /dev/ttyACM0
 frame_id: gps
-rate: 8                     # in Hz
-nav_rate: 4                 # [# of measurement cycles], recommended 1 Hz, may 
+rate: 10                     # in Hz
+nav_rate: 1                 # [# of measurement cycles], recommended 1 Hz, may 
                             # be either 5 Hz (Dual constellation) or 
                             # 8 Hz (GPS only)
 dynamic_model: airborne2    # Airborne < 2G, 2D fix not supported (3D only), 
