@@ -47,5 +47,6 @@ byobu send-keys "rosbag record --split --size=5120 \
   -o /home/${USER}/ssd/${logging_dir}/logging \
   /pylon_camera_node/image_raw /ublox_gps/fix /ublox_gps/navpvt /can_tx" Enter
 
-#Finally, to be able to actually see anything, you need to launch a terminal for each session
-gnome-terminal --full-screen -- byobu attach -t LoggingBox
+sleep 1
+
+byobu
