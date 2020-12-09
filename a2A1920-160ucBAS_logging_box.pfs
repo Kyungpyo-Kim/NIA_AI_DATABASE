@@ -1,18 +1,18 @@
 # {05D8C294-F295-4dfb-9D01-096BD04049F4}
 # GenApi persistence file (version 3.1.0)
 # Device = Basler::vu3_imx392c_bas -- Basler USB3 Vision camera interface -- Device version = 1.0.0 -- Product GUID = 2ec55ef4-9085-3e84-a075-0dc8f17b7849 -- Product version GUID = 5d4cda30-55fb-3000-8ffc-2b87ce6b9f57
-ReverseX	0
-ReverseY	0
+ReverseX	1
+ReverseY	1
 Width	1920
-Height	1200
+Height	1080
 OffsetX	8
-OffsetY	8
-PixelFormat	BayerRG8
+OffsetY	128
+PixelFormat	BayerBG8
 TestPattern	Off
 BslAcquisitionStopMode	AbortExposure
 BslExposureTimeMode	Standard
-ExposureTime	5000.0
-ExposureAuto	Off
+ExposureTime	10000.0
+ExposureAuto	Continuous
 ExposureMode	Timed
 BslSensorBitDepthMode	Auto
 AcquisitionFrameRate	100.0
@@ -82,12 +82,12 @@ TriggerSelector	ExposureActive
 TriggerDelay	0.0
 TriggerSelector	FrameStart
 AcquisitionBurstFrameCount	1
-AutoTargetBrightness	0.500
+AutoTargetBrightness	0.078
 AutoFunctionProfile	MinimizeGain
 AutoGainLowerLimit	0.000
 AutoGainUpperLimit	47.999
 AutoExposureTimeLowerLimit	19.0
-AutoExposureTimeUpperLimit	10000000.0
+AutoExposureTimeUpperLimit	10000.0
 AutoFunctionROISelector	ROI1
 AutoFunctionROIWidth	1920
 AutoFunctionROISelector	ROI2
@@ -124,10 +124,10 @@ AutoFunctionROISelector	ROI2
 AutoFunctionROIHighlight	0
 AutoFunctionROISelector	ROI1
 GainSelector	All
-Gain	0.000
+Gain	24.608
 GainSelector	All
 GainSelector	All
-GainAuto	Off
+GainAuto	Continuous
 GainSelector	All
 BlackLevelSelector	All
 BlackLevel	0.000
