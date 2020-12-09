@@ -96,6 +96,8 @@ lsblk
 
 ## Format
 sudo mkfs.ext4 /dev/nvme0n1
+sudo e2label /dev/nvme0n1 SSD_00
+sudo lsblk -o NAME,LABEL | grep nvme0n1
 
 ## automatic mount on booting
 sudo gedit /etc/fstab 
