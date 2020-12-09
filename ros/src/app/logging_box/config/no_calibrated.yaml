@@ -1,0 +1,7 @@
+camera_frame: pylon_camera
+device_user_id: ""
+camera_info_url: ""
+image_encoding: "bayer_bggr8"
+frame_rate: 100
+
+
