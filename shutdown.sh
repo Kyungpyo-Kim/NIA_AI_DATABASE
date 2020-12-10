@@ -1,4 +1,5 @@
 #!/bin/bash
 
-byobu kill-session -t LoggingBox
-
+byobu kill-session
+byobu kill-session
+byobu kill-session
